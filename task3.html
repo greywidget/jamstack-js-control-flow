@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en" class="bg-light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More  Functions and Control Flow</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
+    <script type="text/javascript" src="/js/calculator.js"></script>
+  </head>
+
+  <body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand text-warning" href="/">
+          <img src="/img/greywidget.jpg" alt="the author and his cat" width="48" height="48" class="d-inline-block align-top">
+          <span class="display-6">More Functions and Control Flow</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="task1.html">Task1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="task2.html">Task2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="task3.html">Task3</a>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid pb-5">
+
+      <main class="row justify-content-center pt-3 main-row">
+        
+        <div class="row justify-content-between pb-3">
+            <div class="col-2">
+                <img src="/img/the_human.png" alt="the author in silhouette" class="d-block w-100">
+            </div>
+            <div class="col-2">
+                <img src="/img/the_cat.png" alt="the author's cat in silhouette" class="d-block w-100">
+            </div>
+        </div>
+
+        <div class="row justify-content-center pt-3">
+            <div class="col-sm-10">
+              <h1>Task 3</h1>
+                <p class="lead">Write a simple calculator with the following operations:</p>
+                <ul>
+                  <li>Addition</li>
+                  <li>Subtraction</li>
+                  <li>Multiplication</li>
+                  <li>Division</li>
+                  <li>Modulus</li>
+                </ul>
+
+<!-- start -->
+<div class="row">
+<div class="col-sm-6">
+  <form class='needs-validation' name='contact' novalidate><input type='hidden' name='form-name' value='contact' />
+    <div class="mb-3">
+      <label for="operand1" class="form-label">Operand 1</label>
+      <input type="number" class="form-control" name="operand1" id="operand1" required/>
+      <div class="invalid-feedback">Please enter a numeric amount with no decimals</div>
+    </div>
+    <div class="mb-3">
+      <label for="operand2" class="form-label">Operand 2</label>
+      <input type="number" class="form-control" name="operand2" id="operand2" required/>
+      <div class="invalid-feedback">Please enter a numeric amount with no decimals</div>
+    </div>
+    <div class="mb-3">
+      <label for="operator" class="form-label">Operator</label>
+      <select class="form-select" aria-label="select operator" id="operator" name="operator" value="" required>
+      <option selected disabled value="">Please select your Operator</option>
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+      <option value="%">%</option>
+      </select>
+      <div class="invalid-feedback">Please select your Operator</div>
+    </div>
+    <div class="d-grid">
+      <button class="btn btn-secondary text-warning" type="submit" onclick="getMathsChoice()">Submit</button>
+    </div>
+  </form>
+  <script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          // Force the page not to refresh, since there is no server and we just want the values
+          event.preventDefault()
+          event.stopPropagation()
+
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+  </script>
+  </div>
+  <div class="col-sm-6 text-center">
+    <p id="result" class="text-danger pt-4 fs-4"></p>
+  </div>
+</div>
+<!-- end -->
+
+                <div class="bg-white mt-5">
+                  <pre>
+function setResult(operand1, operand2, operator) {
+
+  var op1Num = parseInt(operand1);
+  var op2Num = parseInt(operand2);
+  var outString;
+  var result;
+
+  switch (operator) {
+      case '+':
+          result = op1Num + op2Num;
+          break;
+      case '-':
+          result = op1Num - op2Num;
+          break;
+      case '*':
+          result = op1Num * op2Num;
+          break;
+      case '/':
+          result = (op1Num / op2Num).toFixed(2);
+          break;
+      case '%':
+          result = op1Num % op2Num;
+  }
+
+  outString = `${operand1} ${operator} ${operand2} = ${result}`
+  document.getElementById('result').innerHTML = outString;
+}
+
+function getMathsChoice() {
+  var operand1 = document.getElementById('operand1').value;
+  var operand2 = document.getElementById('operand2').value;
+  var operator = document.getElementById('operator').value;
+  // Just return if any are blank. There will be a validation message
+  if (operand1 == "" || operand2 == "" || operator =="") {
+      return;
+  }
+
+  setResult(operand1, operand2, operator);
+}</pre>
+              </div>
+            </div>
+        </div>
+      </main>
+
+    </div> <!-- main container div -->
+
+    <footer class="fixed-bottom py-3 bg-secondary text-warning">
+      <div class="container-fluid text-small">
+        <div class="row mt-auto">
+          <div class="col-4">
+            &copy; greywidget 2021.
+          </div>
+          <div class="col-8 text-end">
+            The cat is not responsible for the content of this site.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+  </body>
+</html>

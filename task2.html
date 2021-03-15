@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" class="bg-light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More  Functions and Control Flow</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
+    <script type="text/javascript" src="/js/drinkChoice.js"></script>
+  </head>
+
+  <body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand text-warning" href="/">
+          <img src="/img/greywidget.jpg" alt="the author and his cat" width="48" height="48" class="d-inline-block align-top">
+          <span class="display-6">More Functions and Control Flow</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="task1.html">Task1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="task2.html">Task2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="task3.html">Task3</a>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid pb-5">
+
+      <main class="row justify-content-center pt-3 main-row">
+        
+        <div class="row justify-content-between pb-3">
+            <div class="col-2">
+                <img src="/img/the_human.png" alt="the author in silhouette" class="d-block w-100">
+            </div>
+            <div class="col-2">
+                <img src="/img/the_cat.png" alt="the author's cat in silhouette" class="d-block w-100">
+            </div>
+        </div>
+
+        <div class="row justify-content-center pt-3">
+            <div class="col-sm-10">
+              <h1>Task 2</h1>
+                <p class="lead">Given the following Drink options:</p>
+                <ul>
+                  <li><strong>Flavour:</strong> Cola | Orange | Lemon</li>
+                  <li><strong>Size:</strong> Small | Medium | Large</li>
+                </ul>
+                <p class="lead">Use a <code>switch</code> statement to display
+                the choices made.</p>
+
+<!-- start -->
+<div class="row">
+<div class="col-sm-6">
+  <form class='needs-validation' name='contact' novalidate><input type='hidden' name='form-name' value='contact' />
+    <div class="mb-3">
+      <label for="flavour" class="form-label">Flavour</label>
+      <select class="form-select" aria-label="select flavour" id="flavour" name="flavour" value="" required>
+      <option selected disabled value="">Please select your Flavour</option>
+      <option value="Cola">Cola</option>
+      <option value="Orange">Orange</option>
+      <option value="Lemon">Lemon</option>
+      </select>
+      <div class="invalid-feedback">Please select your Flavour</div>
+    </div>
+    <div class="mb-3">
+      <label for="drinkSize" class="form-label">Drink Size</label>
+      <select class="form-select" aria-label="select drinkSize" id="drinkSize" name="drinkSize" value="" required>
+      <option selected disabled value="">Please select your Drink Size</option>
+      <option value="Small">Small</option>
+      <option value="Medium">Medium</option>
+      <option value="Large">Large</option>
+      </select>
+      <div class="invalid-feedback">Please select your Drink Size</div>
+    </div>
+    <div class="d-grid">
+      <button class="btn btn-secondary text-warning" type="submit" onclick="getDrinkChoice()">Submit</button>
+    </div>
+  </form>
+  <script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          // Force the page not to refresh, since there is no server and we just want the values
+          event.preventDefault()
+          event.stopPropagation()
+
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+  </script>
+  </div>
+  <div class="col-sm-6 text-center">
+    <p id="result" class="text-danger pt-4 fs-4"></p>
+  </div>
+</div>
+<!-- end -->
+
+                <div class="bg-white mt-5">
+                  <pre>
+function setDrinkChoice(flavour, drinkSize) {
+
+  var outString = "You ordered "
+
+  switch (flavour) {
+      case 'Cola':
+          outString += 'Cola';
+          break;
+      case 'Lemon':
+          outString += 'Lemon';
+          break;
+      case 'Orange':
+          outString += 'Orange';
+          break;
+  }
+
+  outString += ", size ";
+
+  switch (drinkSize) {
+      case 'Small':
+          outString += 'Small ';
+          break;
+      case 'Medium':
+          outString += 'Medium ';
+          break;
+      case 'Large':
+          outString += 'Large ';
+          break;
+  }
+
+  document.getElementById('result').innerHTML = outString;
+}
+
+function getDrinkChoice() {
+  var flavour = document.getElementById('flavour').value;
+  var drinkSize = document.getElementById('drinkSize').value;
+  // Just return if either are blank. There will be a validation message
+  if (flavour == "" || drinkSize == "") {
+      return;
+  }
+
+  setDrinkChoice(flavour, drinkSize);
+}</pre>
+              </div>
+            </div>
+        </div>
+      </main>
+
+    </div> <!-- main container div -->
+
+    <footer class="fixed-bottom py-3 bg-secondary text-warning">
+      <div class="container-fluid text-small">
+        <div class="row mt-auto">
+          <div class="col-4">
+            &copy; greywidget 2021.
+          </div>
+          <div class="col-8 text-end">
+            The cat is not responsible for the content of this site.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+  </body>
+</html>

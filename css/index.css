@@ -1,0 +1,13 @@
+
+/* Craig's Additional Styling */
+.main-row img {
+    width: 80%;
+}
+
+/* Default image with above is 80%. Use these to override */
+.iw-100 img {
+    width: 100%;
+}
+.iw-50 img {
+    width: 50%;
+}
